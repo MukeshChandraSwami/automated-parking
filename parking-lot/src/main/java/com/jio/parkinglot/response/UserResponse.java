@@ -1,10 +1,16 @@
 package com.jio.parkinglot.response;
 
-public class UserResponse extends BaseResponse{
+import com.jio.parkinglot.constants.ResponseCode;
+import com.jio.parkinglot.response.model.User;
+import com.jio.parkinglot.response.shared.Response;
+import lombok.Getter;
 
-    public UserResponse(boolean success, String responseMassage, String responseCode) {
-        super(success, responseMassage, responseCode);
+@Getter
+public class UserResponse extends Response {
+
+    private User userDetails;
+    public UserResponse(ResponseCode response, User userDetails) {
+        super(response);
+        this.userDetails = userDetails;
     }
-
-
 }

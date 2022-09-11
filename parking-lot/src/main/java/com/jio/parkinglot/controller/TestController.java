@@ -1,6 +1,7 @@
 package com.jio.parkinglot.controller;
 
-import com.jio.parkinglot.response.shared.BaseResponse;
+import com.jio.parkinglot.constants.ResponseCode;
+import com.jio.parkinglot.response.shared.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/connectivity")
-    public ResponseEntity<BaseResponse> tester() {
-        return new ResponseEntity<>(new BaseResponse(true, "Tested","200"), HttpStatus.OK);
+    public ResponseEntity<Response> tester() {
+        return new ResponseEntity<>(new Response( ResponseCode.CONNECTIVITY_SUCCESS), HttpStatus.OK);
     }
 }

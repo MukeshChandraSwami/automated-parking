@@ -1,10 +1,10 @@
 package com.jio.parkinglot.response;
 
-import com.jio.parkinglot.response.shared.BaseResponse;
+import com.jio.parkinglot.response.shared.Response;
 
-public class ParkingResponse extends BaseResponse {
+public class ParkingResponse extends Response {
 
-    public ParkingResponse(boolean success, String responseMassage, String responseCode) {
-        super(success, responseMassage, responseCode);
+    public ParkingResponse() {
+        super(null);
     }
 }
