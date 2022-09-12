@@ -1,13 +1,12 @@
 package com.jio.parkinglot.service.user;
 
-import com.jio.parkinglot.UserRequest;
+import com.jio.parkinglot.request.UserRequest;
 import com.jio.parkinglot.constants.ResponseCode;
 import com.jio.parkinglot.entity.UserEntity;
 import com.jio.parkinglot.exceptions.ResourceCreationFailedException;
 import com.jio.parkinglot.exceptions.ResourceNotFoundException;
 import com.jio.parkinglot.exceptions.UserCreationFailedException;
 import com.jio.parkinglot.exceptions.UserNotFoundException;
-import com.jio.parkinglot.operation.fun.user.UserFunctions;
 import com.jio.parkinglot.repository.UserRepository;
 import com.jio.parkinglot.response.ResourceCountResponse;
 import com.jio.parkinglot.response.UserResponse;

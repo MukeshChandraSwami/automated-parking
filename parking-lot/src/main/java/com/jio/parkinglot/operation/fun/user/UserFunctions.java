@@ -1,9 +1,10 @@
 package com.jio.parkinglot.operation.fun.user;
 
-import com.jio.parkinglot.UserRequest;
+import com.jio.parkinglot.request.UserRequest;
 import com.jio.parkinglot.entity.UserEntity;
 import com.jio.parkinglot.response.model.User;
 
+import java.util.Date;
 import java.util.function.Function;
 
 import static com.jio.parkinglot.operation.sup.IDSupplier.ID_SUPPLIER;
@@ -28,5 +29,7 @@ public interface UserFunctions {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .mobileNumber(request.getMobileNumber())
+                .createdAt(new Date())
+                .updatedAt(new Date())
                 .build();
 }

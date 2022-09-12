@@ -1,4 +1,4 @@
-package com.jio.parkinglot;
+package com.jio.parkinglot.request;
 
 import com.jio.parkinglot.constants.PhysicalCondition;
 import lombok.AllArgsConstructor;

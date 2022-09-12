@@ -1,6 +1,6 @@
 package com.jio.parkinglot.service.user;
 
-import com.jio.parkinglot.UserRequest;
+import com.jio.parkinglot.request.UserRequest;
 import com.jio.parkinglot.exceptions.ResourceCreationFailedException;
 import com.jio.parkinglot.exceptions.ResourceNotFoundException;
 import com.jio.parkinglot.response.shared.Response;
