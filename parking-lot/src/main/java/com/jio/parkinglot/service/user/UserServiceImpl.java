@@ -51,4 +51,11 @@ public class UserServiceImpl implements UserService {
         long count = userRepository.count();
         return new ResourceCountResponse(ResponseCode.SUCCESS, count);
     }
+
+    @Override
+    public Response getUserByEmail(String email) throws ResourceNotFoundException {
+        Optional<UserEntity> userOp = Optional.of(userRepository.findByEmail(email));
+        User user = userOp.map(USER_ENTITY_TO_USER).orElseThrow(new ResourceNotFoundException(USER_NOT_FOUND));
+        return new UserResponse(ResponseCode.SUCCESS,user);
+    }
 }

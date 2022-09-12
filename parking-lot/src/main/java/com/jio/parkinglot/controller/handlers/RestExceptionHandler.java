@@ -1,6 +1,7 @@
 package com.jio.parkinglot.controller.handlers;
 
 import com.jio.parkinglot.constants.ResponseCode;
+import com.jio.parkinglot.exceptions.ParkingException;
 import com.jio.parkinglot.exceptions.ResourceCreationFailedException;
 import com.jio.parkinglot.exceptions.ResourceNotFoundException;
 import com.jio.parkinglot.response.shared.Response;
@@ -19,6 +20,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new Response(ex.getErrorResponse()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ParkingException.class)
+    public ResponseEntity<Response> parkingException(ParkingException ex, WebRequest request) {
+        return new ResponseEntity<>(new Response(ex.getErrorResponse()), HttpStatus.NOT_IMPLEMENTED);
+    }
+
     @ExceptionHandler(ResourceCreationFailedException.class)
     public ResponseEntity<Response> resourceCreationFailed(ResourceCreationFailedException ex, WebRequest request) {
         return new ResponseEntity<>(new Response(ex.getErrorResponse()), HttpStatus.EXPECTATION_FAILED);
@@ -26,6 +32,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> unhandled(Exception ex, WebRequest request) {
-        return new ResponseEntity<>(new Response(ResponseCode.SERVER_ERROR), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new Response(ResponseCode.SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

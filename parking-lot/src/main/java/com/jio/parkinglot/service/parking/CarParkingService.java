@@ -3,10 +3,10 @@ package com.jio.parkinglot.service.parking;
 import com.jio.parkinglot.constants.ParkingStatus;
 import com.jio.parkinglot.constants.ResponseCode;
 import com.jio.parkinglot.entity.ParkingEntity;
-import com.jio.parkinglot.exceptions.ParkingCreationFailedException;
-import com.jio.parkinglot.exceptions.ResourceCreationFailedException;
+import com.jio.parkinglot.exceptions.*;
 import com.jio.parkinglot.repository.CarParkingRepository;
 import com.jio.parkinglot.response.ParkingCreationResponse;
+import com.jio.parkinglot.response.ParkingResponse;
 import com.jio.parkinglot.response.ResourceCountResponse;
 import com.jio.parkinglot.response.model.Parking;
 import com.jio.parkinglot.response.shared.Response;
@@ -20,8 +20,7 @@ import java.util.Optional;
 
 import static com.jio.parkinglot.constants.ParkingStatus.*;
 import static com.jio.parkinglot.constants.ResponseCode.*;
-import static com.jio.parkinglot.operation.fun.parking.ParkingFunction.PARKING_ENTITY_LIST_TO_PARKING_LIST;
-import static com.jio.parkinglot.operation.fun.parking.ParkingFunction.PARKING_GENERATOR;
+import static com.jio.parkinglot.operation.fun.parking.ParkingFunction.*;
 
 @Service("carParkingService")
 public class CarParkingService implements ParkingService {
@@ -76,5 +75,20 @@ public class CarParkingService implements ParkingService {
     public Response countOccupiedParkingSlots() {
         long count = parkingRepository.countSlots(OCCUPIED) + parkingRepository.countSlots(BLOCKED);
         return new ResourceCountResponse(ResponseCode.SUCCESS, count);
+    }
+
+    @Override
+    public Response getAvailableParking(boolean reservable) throws ResourceNotFoundException {
+
+        Optional<ParkingEntity> parkingOp = Optional.of(parkingRepository.findParking(reservable).get(0));
+        Parking parking = parkingOp.map(PARKING_ENTITY_TO_PARKING).orElseThrow(new ParkingNotFoundException(PARKING_NOT_FOUND));
+        return new ParkingResponse(ResponseCode.SUCCESS, parking);
+    }
+
+    @Override
+    public Response updateParking(Parking parking) throws ParkingException {
+        Optional<ParkingEntity> parkingOp = Optional.of(parkingRepository.save(PARKING_TO_PARKING_ENTITY.apply(parking)));
+        Parking p = parkingOp.map(PARKING_ENTITY_TO_PARKING).orElseThrow(new ParkingUpdationFailed(PARKING_UPDATE_FAILED));
+        return new ParkingResponse(ResponseCode.SUCCESS, p);
     }
 }

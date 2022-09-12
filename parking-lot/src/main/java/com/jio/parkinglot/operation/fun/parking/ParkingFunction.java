@@ -28,6 +28,7 @@ public interface ParkingFunction {
             .parkingIdentifier(parkingEntity.getParkingIdentifier())
             .status(parkingEntity.getStatus())
             .reservable(parkingEntity.isReservable())
+            .creationTime(parkingEntity.getCreatedAt())
             .build();
 
 
@@ -36,4 +37,13 @@ public interface ParkingFunction {
                     .stream()
                     .map(PARKING_ENTITY_TO_PARKING)
                     .toList();
+
+    Function<Parking, ParkingEntity> PARKING_TO_PARKING_ENTITY = parking -> ParkingEntity.builder()
+            .parkingId(parking.getParkingId())
+            .parkingIdentifier(parking.getParkingIdentifier())
+            .status(parking.getStatus())
+            .reservable(parking.isReservable())
+            .createdAt(parking.getCreationTime())
+            .updatedAt(new Date())
+            .build();
 }

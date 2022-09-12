@@ -1,15 +1,21 @@
 package com.jio.parkinglot.operation.fun.user;
 
+import com.jio.parkinglot.constants.PhysicalCondition;
 import com.jio.parkinglot.request.UserRequest;
 import com.jio.parkinglot.entity.UserEntity;
 import com.jio.parkinglot.response.model.User;
 
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
+import static com.jio.parkinglot.constants.PhysicalCondition.DIFFERENTLY_ABLE;
+import static com.jio.parkinglot.constants.PhysicalCondition.PREGNANT;
 import static com.jio.parkinglot.operation.sup.IDSupplier.ID_SUPPLIER;
 
 public interface UserFunctions {
+
+    List<PhysicalCondition> physicallyChallengedCategory = List.of(PREGNANT, DIFFERENTLY_ABLE);
 
     Function<UserEntity, User> USER_ENTITY_TO_USER = userEntity -> User
             .builder()
@@ -32,4 +38,6 @@ public interface UserFunctions {
                 .createdAt(new Date())
                 .updatedAt(new Date())
                 .build();
+
+    Function<User, Boolean> PHYSICALLY_CHALLENGED = user -> physicallyChallengedCategory.contains(user.getPhysicalCondition());
 }

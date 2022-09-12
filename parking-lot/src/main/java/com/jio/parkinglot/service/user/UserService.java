@@ -14,4 +14,6 @@ public interface UserService {
     Response createUser(UserRequest request) throws ResourceCreationFailedException;
 
     Response countRegisteredUsers();
+
+    Response getUserByEmail(String email) throws ResourceNotFoundException;
 }
