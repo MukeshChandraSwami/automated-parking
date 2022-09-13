@@ -1,0 +1,119 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Parking Lot",
+		"_postman_id": "70c5ea0c-31ab-c49a-2149-28f195454f96",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"url": "http://localhost:8080/user/v1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"Sonam\",\n\t\"lastName\":\"Swami\",\n\t\"physicalCondition\":\"NORMAL\",\n\t\"mobileNumber\":\"1234567890\",\n\t\"email\":\"sswami@gmail.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Id",
+			"request": {
+				"url": "http://localhost:8080/user/v1/ae12404d-1283-4b3e-9bb1-e605bd9488d7-1662911097322",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Connectivity Test",
+			"request": {
+				"url": "http://localhost:8080/test/connectivity",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Count Registered User",
+			"request": {
+				"url": "http://localhost:8080/user/v1/count",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Parking Slots",
+			"request": {
+				"url": "http://localhost:8080/parking/v1/create",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Count All Parking Slots",
+			"request": {
+				"url": "http://localhost:8080/parking/v1/count/all",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Count Available Slots",
+			"request": {
+				"url": "http://localhost:8080/parking/v1/count/available",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Count Occupied Slots",
+			"request": {
+				"url": "http://localhost:8080/parking/v1/count/occupied",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Reserve Parking",
+			"request": {
+				"url": "http://localhost:8080/parking/v1/sswami@gmail.com/reserve",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
